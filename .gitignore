@@ -1,2 +1,4 @@
 .env
 bot.py
+discord.log
+__pycache__
