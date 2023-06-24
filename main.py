@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 from keep_alive import keep_alive
 import yaml
 import re
+import random
+import datetime
 
 load_dotenv()
 
@@ -39,6 +41,15 @@ class MyClient(commands.Bot):
         # don't respond to ourselves
         if msg.author.bot == self.user:
             return
+        
+        # rr = random.random()
+        # # print(rr)
+        # if rr <= 0.1:
+        #     try:
+        #         await msg.author.timeout(datetime.timedelta(seconds=10))
+        #         await msg.reply("恭喜中獎！")
+        #     except:
+        #         pass
         
         if "http" in msg.content:
             if "youtub" in msg.content:
