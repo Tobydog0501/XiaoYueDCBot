@@ -50,7 +50,7 @@ class MyClient(commands.Bot):
                     if d in msg.content:
                         logging.warn(f"Sussy link: {msg.content}")
                         await msg.delete()
-                        await msg.channel.send("偵測到可疑連結!")
+                        await msg.channel.send(f"偵測到可疑連結! 傳送者: <@{msg.author.id}>")
             except Exception as e:
                 logging.error(e)
                 pass
