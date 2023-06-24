@@ -2,3 +2,5 @@
 bot.py
 discord.log
 __pycache__
+.replit
+replit.nix
