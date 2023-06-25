@@ -7,6 +7,7 @@ import random
 import yaml
 import discord.utils as utils
 import datetime
+import asyncio
 
 async def fun(msg:discord.Message,execute:bool=False):
     if execute:
@@ -63,6 +64,7 @@ class autoReply(cog):
             await msg.channel.send(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)].replace("{user}",f"<@{msg.author.id}>"))
         
         if msg.content in self.autoReply:
+            await asyncio.sleep(0.3)
             temp = self.reply["autoReply"][msg.content]
             if type(temp) == str:
                 await msg.channel.send(temp)
