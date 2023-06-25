@@ -26,6 +26,7 @@ class autoReply(cog):
         with open("./reply.yml",'r',encoding='utf-8') as f:
             self.reply = yaml.safe_load(f)
         self.shutUpRole = None
+        self.autoReply = self.reply["autoReply"].keys()
 
         
         
@@ -60,7 +61,13 @@ class autoReply(cog):
         if self.shutUpRole in msg.author.roles:
             await msg.delete()
             await msg.channel.send(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)].replace("{user}",f"<@{msg.author.id}>"))
-            
+        
+        if msg.content in self.autoReply:
+            temp = self.reply["autoReply"][msg.content]
+            if type(temp) == str:
+                await msg.channel.send(temp)
+            elif type(temp) == list:
+                await msg.channel.send(temp[random.randint(0,len(temp)-1)])
 
         await bot.process_commands(msg)
 
