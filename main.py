@@ -37,36 +37,6 @@ class MyClient(commands.Bot):
         with open("scam-links.yml",'r') as f:
             self.data = yaml.safe_load(f)
 
-    async def on_message(self, msg:discord.Message):
-        # don't respond to ourselves
-        if msg.author.bot == self.user:
-            return
-        
-        # rr = random.random()
-        # # print(rr)
-        # if rr <= 0.1:
-        #     try:
-        #         await msg.author.timeout(datetime.timedelta(seconds=10))
-        #         await msg.reply("恭喜中獎！")
-        #     except:
-        #         pass
-        
-        if "http" in msg.content:
-            if "youtub" in msg.content:
-                return
-            result = re.search("https?://",msg.content)
-            try:
-                data = self.data["links"][msg.content[result.end()]]
-                for d in data:
-                    if d in msg.content:
-                        logging.warn(f"Sussy link: {msg.content}")
-                        await msg.delete()
-                        await msg.channel.send(f"偵測到可疑連結! 傳送者: <@{msg.author.id}>")
-            except Exception as e:
-                logging.error(e)
-                pass
-
-        await bot.process_commands(msg)
 
 
 intents = discord.Intents.all()
@@ -83,5 +53,5 @@ asyncio.run(loadExtension())
 
 
 if __name__ == "__main__":
-    keep_alive()
+    # keep_alive()
     bot.run(os.environ["TOKEN"])
