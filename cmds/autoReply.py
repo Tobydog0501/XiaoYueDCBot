@@ -53,8 +53,9 @@ class autoReply(cog):
                 pass
         role = utils.get(msg.guild.roles,id=1006858175351361616)
         if role in msg.author.roles:
-            await msg.reply(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)])
             await msg.delete()
+            await msg.channel.send(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)].replace("{user}",f"<@{msg.author.id}>"))
+            
 
         await bot.process_commands(msg)
 
