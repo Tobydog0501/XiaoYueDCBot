@@ -28,8 +28,8 @@ class autoReply(cog):
             self.reply = yaml.safe_load(f)
         self.shutUpRole = None
         self.autoReply = self.reply["autoReply"].keys()
-
-        
+        with open("./scam-links.yml",'r',encoding='utf-8') as f:
+            self.data = yaml.safe_load(f)
         
 
     @commands.Cog.listener()
