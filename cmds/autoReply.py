@@ -25,10 +25,15 @@ class autoReply(cog):
 
         with open("./reply.yml",'r',encoding='utf-8') as f:
             self.reply = yaml.safe_load(f)
+        self.shutUpRole = None
+
+        
         
 
     @commands.Cog.listener()
     async def on_message(self, msg:discord.Message):
+        if not self.shutUpRole:
+            self.shutUpRole = utils.get(msg.guild.roles,id=1006858175351361616)
         bot = self.bot
         # don't respond to ourselves
         if msg.author.bot:
@@ -51,8 +56,8 @@ class autoReply(cog):
             except Exception as e:
                 logging.error(e)
                 pass
-        role = utils.get(msg.guild.roles,id=1006858175351361616)
-        if role in msg.author.roles:
+        
+        if self.shutUpRole in msg.author.roles:
             await msg.delete()
             await msg.channel.send(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)].replace("{user}",f"<@{msg.author.id}>"))
             
