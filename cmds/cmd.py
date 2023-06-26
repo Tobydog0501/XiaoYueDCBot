@@ -4,6 +4,7 @@ from discord.ext import commands
 from core.core import cog
 from discord.utils import get
 import datetime
+from buttons.confirm import confirmBtn
 import asyncio
 
 class cmd(cog):
@@ -18,7 +19,15 @@ class cmd(cog):
         else:
             await ctx.channel.send("格式：a>mute userId timeoutSeconds")
         await ctx.message.delete()
-     
+    
+    @commands.command()
+    async def runT(self,ctx:commands.Context):
+        if ctx.author.id != 606668363531288577:
+            return
+        await ctx.channel.send("Please confirm",view=confirmBtn())
+        await ctx.message.delete()
+        # print("test")
+        return
 
 
 
