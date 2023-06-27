@@ -71,7 +71,7 @@ class autoReply(cog):
                 await msg.channel.send(temp)
             elif type(temp) == list:
                 await msg.channel.send(temp[random.randint(0,len(temp)-1)])
-        await bot.process_commands(msg)
+                
         return
 
 

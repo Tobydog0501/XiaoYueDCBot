@@ -25,6 +25,7 @@ async def loadExtension():
     p = os.listdir('cmds/')
     for filename in p:
         if filename.endswith('.py'):
+            print(f"loading extension: {filename[:-3]}")
             await bot.load_extension(F'cmds.{filename[:-3]}')
 
 asyncio.run(loadExtension())

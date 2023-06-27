@@ -13,6 +13,8 @@ class cmd(cog):
 
     @commands.command()
     async def mute(self,ctx:commands.Context,arg=None,seconds=None):
+        if ctx.author.id != 606668363531288577:
+            return
         if arg and seconds:
             mem = await ctx.guild.fetch_member(int(arg))
             await mem.timeout(datetime.timedelta(seconds=int(seconds)))
