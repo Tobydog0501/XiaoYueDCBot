@@ -21,6 +21,10 @@ formatter = logging.Formatter('[{asctime}] [{levelname:<8}] {name}: {message}', 
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
+class Logger:
+    def __init__(self) -> None:
+        self.logger = logger
+
 class cog(commands.Cog):
     def __init__(self,bot):
         self.bot = bot

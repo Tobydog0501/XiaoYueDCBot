@@ -52,12 +52,13 @@ class autoReply(cog):
                 data = self.data["links"][msg.content[result.end()]]
                 for d in data:
                     if d in msg.content:
+                        yellow = "\x1b[33;20m"
+                        self.logger.name = "Scam links"
                         self.logger.warn(f"Scam link detected! Content: {msg.content}, Author: {msg.author.id}")
                         # logging.info(f"Scam link detected! Content: {msg.content}, Author: {msg.author.id}")
                         await msg.delete()
                         await msg.channel.send(f"偵測到可疑連結! 傳送者: <@{msg.author.id}>")
-            except Exception as e:
-                logging.error(e)
+            except:
                 pass
         
         if self.shutUpRole in msg.author.roles:

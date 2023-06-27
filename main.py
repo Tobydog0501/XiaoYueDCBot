@@ -5,6 +5,7 @@ import asyncio
 from discord.ext import commands
 from dotenv import load_dotenv
 from keep_alive import keep_alive
+from core.core import Logger
 
 load_dotenv()
 
@@ -20,15 +21,19 @@ class MyClient(commands.Bot):
 
 intents = discord.Intents.all()
 bot = MyClient(intents=intents,command_prefix="a>")
+temp = Logger()
 
 async def loadExtension():
     p = os.listdir('cmds/')
     for filename in p:
         if filename.endswith('.py'):
             print(f"loading extension: {filename[:-3]}")
+            temp.logger.name = "Extensions"
+            temp.logger.info(f"loading extension: {filename}")
             await bot.load_extension(F'cmds.{filename[:-3]}')
 
 asyncio.run(loadExtension())
+temp = None
 
 if __name__ == "__main__":
     keep_alive()
