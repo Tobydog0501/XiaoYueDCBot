@@ -65,13 +65,10 @@ class autoReply(cog):
             await msg.delete()
             await msg.channel.send(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)].replace("{user}",f"<@{msg.author.id}>"))
         
-        if msg.content in self.autoReply:
+        if msg.content.lower() in self.autoReply:
             await asyncio.sleep(0.3)
-            temp = self.reply["autoReply"][msg.content]
-            if type(temp) == str:
-                await msg.channel.send(temp)
-            elif type(temp) == list:
-                await msg.channel.send(temp[random.randint(0,len(temp)-1)])
+            temp = self.reply["autoReply"][msg.content.lower()]
+            await msg.channel.send(temp[random.randint(0,len(temp)-1)])
                 
         return
 

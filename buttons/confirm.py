@@ -3,11 +3,12 @@ from discord import ButtonStyle
 from core.core import buttonCore
 
 class confirmBtn(buttonCore):
+    custom_id = "confirm"
+
     def __init__(self, *, timeout: float | None = 180):
         super().__init__(timeout=timeout)
-        self.custom_id = "confirm"
     
-    @discord.ui.button(label="Confirm",custom_id="confirm",style=ButtonStyle.success)
+    @discord.ui.button(label="Confirm",custom_id=custom_id,style=ButtonStyle.success)
     async def confirm(self,interaction: discord.Interaction, button: discord.ui.Button):
         # interaction.respose is not callable!!!
         await interaction.message.reply("ok")
