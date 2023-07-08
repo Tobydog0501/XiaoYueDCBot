@@ -68,14 +68,17 @@ class autoReply(cog):
             self.autoReply = self.reply["autoReply"].keys()
             await msg.delete()
         
-        if self.shutUpRole in msg.author.roles:
-            await msg.delete()
-            await msg.channel.send(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)].replace("{user}",f"<@{msg.author.id}>"))
-        
         if msg.content.lower() in self.autoReply:
             await asyncio.sleep(0.3)
             temp = self.reply["autoReply"][msg.content.lower()]
             await msg.channel.send(temp[random.randint(0,len(temp)-1)])
+            
+            if self.shutUpRole in msg.author.roles:
+                await msg.delete()
+
+        elif self.shutUpRole in msg.author.roles:
+            await msg.delete()
+            await msg.channel.send(self.reply["taunt"][random.randint(0,len(self.reply["taunt"])-1)].replace("{user}",f"<@{msg.author.id}>"))
                 
         return
 
