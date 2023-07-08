@@ -24,8 +24,6 @@ class cmd(cog):
     
     @commands.command()
     async def btn(self,ctx:commands.Context):
-        if ctx.author.id != 606668363531288577:
-            return
         await ctx.channel.send("請選擇要增加哪種回覆",view=autoreply())
         await ctx.message.delete()
         # print("test")
