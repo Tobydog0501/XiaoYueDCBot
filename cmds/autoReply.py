@@ -66,6 +66,7 @@ class autoReply(cog):
                 self.reply = yaml.safe_load(f)
             self.shutUpRole = None
             self.autoReply = self.reply["autoReply"].keys()
+            await msg.delete()
         
         if self.shutUpRole in msg.author.roles:
             await msg.delete()
