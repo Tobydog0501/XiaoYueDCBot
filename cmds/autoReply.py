@@ -60,6 +60,12 @@ class autoReply(cog):
                         await msg.channel.send(f"偵測到可疑連結! 傳送者: <@{msg.author.id}>")
             except:
                 pass
+
+        if msg.content.lower() == "reply reload":
+            with open("./reply.yml",'r',encoding='utf-8') as f:
+                self.reply = yaml.safe_load(f)
+            self.shutUpRole = None
+            self.autoReply = self.reply["autoReply"].keys()
         
         if self.shutUpRole in msg.author.roles:
             await msg.delete()

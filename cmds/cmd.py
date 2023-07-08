@@ -4,7 +4,7 @@ from discord.ext import commands
 from core.core import cog
 from discord.utils import get
 import datetime
-from buttons.confirm import confirmBtn
+from buttons.addautoreply import autoreply
 import asyncio
 
 class cmd(cog):
@@ -23,10 +23,10 @@ class cmd(cog):
         await ctx.message.delete()
     
     @commands.command()
-    async def runT(self,ctx:commands.Context):
+    async def btn(self,ctx:commands.Context):
         if ctx.author.id != 606668363531288577:
             return
-        await ctx.channel.send("Please confirm",view=confirmBtn())
+        await ctx.channel.send("請選擇要增加哪種回覆",view=autoreply())
         await ctx.message.delete()
         # print("test")
         return
