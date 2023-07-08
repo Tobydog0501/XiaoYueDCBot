@@ -21,9 +21,9 @@ class keyword(discord.ui.Modal, title='新增關鍵字回覆'):
         with open("./reply.yml","r",encoding="utf-8") as f:
             data = yaml.safe_load(f)
             if data["autoReply"].get(self.key.value):
-                data["autoReply"][self.key.value].append(self.reply.value)
+                data["autoReply"][self.key.value.lower()].append(self.reply.value)
             else:
-                data["autoReply"][self.key.value] = [self.reply.value]
+                data["autoReply"][self.key.value.lower()] = [self.reply.value]
 
         with open("./reply.yml",'w',encoding="utf-8") as f:
             yaml.safe_dump(data,f)    
