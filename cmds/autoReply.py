@@ -71,7 +71,7 @@ class autoReply(cog):
         if msg.content.lower() in self.autoReply:
             await asyncio.sleep(0.3)
             temp = self.reply["autoReply"][msg.content.lower()]
-            await msg.channel.send(temp[random.randint(0,len(temp)-1)])
+            await msg.channel.send(temp[random.randint(0,len(temp)-1)].replace("{user}",f"<@{msg.author.id}>"))
             
             if self.shutUpRole in msg.author.roles:
                 await msg.delete()
