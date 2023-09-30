@@ -28,6 +28,20 @@ class cmd(cog):
         await ctx.message.delete()
         # print("test")
         return
+    
+    @commands.command()
+    async def nuke(self,ctx:commands.Context,member:discord.Member=None,time="50"):
+        if ctx.author.id not in [891180802279354418,606668363531288577]:
+            await ctx.reply("只有卓越能使用此指令!")
+            return
+        if not member:
+            await ctx.reply("輸入格式：a>nuke @被轟炸人 次數")
+            return
+        if int(time) > 50:
+            await ctx.reply("一次最多50次喔~")
+            return
+        for i in range(int(time)):
+            await ctx.channel.send(f"<@{member.id}>")
 
 
 
