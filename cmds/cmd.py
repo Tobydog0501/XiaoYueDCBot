@@ -3,6 +3,8 @@ from discord import channel
 from discord.ext import commands
 from core.core import cog
 from discord.utils import get
+import requests
+from threading import Thread
 import datetime
 from buttons.addautoreply import autoreply
 import asyncio
@@ -40,9 +42,14 @@ class cmd(cog):
         if int(time) > 50:
             await ctx.reply("一次最多50次喔~")
             return
-        for i in range(int(time)):
-            await ctx.channel.send(f"<@{member.id}>")
+        webhook = await ctx.channel.create_webhook(name="阿嬤分身")
+        threads = [Thread(target = lambda:requests.post(webhook.url,{"content":f"<@{member.id}>"})) for i in range(int(time))]
+        for t in threads:
+            t.start()
 
+        for t in threads:
+            t.join()
+        await webhook.delete()
 
 
 async def setup(bot):
