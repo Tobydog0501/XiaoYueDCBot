@@ -3,7 +3,7 @@ from discord import channel
 from discord.ext import commands
 from core.core import cog
 from discord.utils import get
-import requests
+from dhooks import Webhook
 from threading import Thread
 import datetime
 from buttons.addautoreply import autoreply
@@ -43,12 +43,14 @@ class cmd(cog):
             await ctx.reply("一次最多50次喔~")
             return
         webhook = await ctx.channel.create_webhook(name="阿嬤分身")
-        threads = [Thread(target = lambda:requests.post(webhook.url,{"content":f"<@{member.id}>"})) for i in range(int(time))]
+        x = Webhook(webhook.url)
+        threads = [Thread(target = lambda:x.send(f"<@{member.id}>")) for i in range(int(time))]
         for t in threads:
             t.start()
 
         for t in threads:
             t.join()
+        # await asyncio.sleep(10)
         await webhook.delete()
 
 
