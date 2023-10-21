@@ -5,8 +5,7 @@ import asyncio
 from discord.ext import commands
 from dotenv import load_dotenv
 from keep_alive import keep_alive
-import core.core
-Logger = core.core.Logger
+from core.core import Logger
 from discord import app_commands
 MY_GUILD = discord.Object(id=894161476712030218)  # replace with your guild id
 
