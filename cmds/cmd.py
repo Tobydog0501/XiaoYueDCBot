@@ -6,12 +6,15 @@ from discord.utils import get
 from dhooks import Webhook
 from threading import Thread
 import datetime
+import yaml
 from buttons.addautoreply import autoreply
 import asyncio
 
 class cmd(cog):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
+        with open("./reply.yml",'r',encoding='utf-8') as f:
+            self.permis = yaml.safe_load(f)
 
     @commands.command()
     async def mute(self,ctx:commands.Context,arg=None,seconds=None):
@@ -33,7 +36,7 @@ class cmd(cog):
     
     @commands.command()
     async def nuke(self,ctx:commands.Context,member:discord.Member=None,time="50"):
-        if ctx.author.id not in [891180802279354418,606668363531288577,847402466659139614,642682416871374848,1000755126920806561]:
+        if not self.permis.get(ctx.author.id):
             await ctx.reply("只有有權限者能使用此指令!\n要權限找Tobydog!")
             return
         if not member:
