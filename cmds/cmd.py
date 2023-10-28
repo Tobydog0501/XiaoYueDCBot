@@ -33,8 +33,8 @@ class cmd(cog):
     
     @commands.command()
     async def nuke(self,ctx:commands.Context,member:discord.Member=None,time="50"):
-        if ctx.author.id not in [891180802279354418,606668363531288577]:
-            await ctx.reply("只有卓越能使用此指令!")
+        if ctx.author.id not in [891180802279354418,606668363531288577,847402466659139614,642682416871374848,1000755126920806561]:
+            await ctx.reply("只有有權限者能使用此指令!\n要權限找Tobydog!")
             return
         if not member:
             await ctx.reply("輸入格式：a>nuke @被轟炸人 次數")
