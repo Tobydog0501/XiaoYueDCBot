@@ -13,7 +13,7 @@ import asyncio
 class cmd(cog):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        with open("./reply.yml",'r',encoding='utf-8') as f:
+        with open("./permissions.yml",'r',encoding='utf-8') as f:
             self.permis = yaml.safe_load(f)
 
     @commands.command()
